@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 31 GW. To train the model, the data splits for training/validation/testing are given in ./data/. A gestational age (GA) file is needed that incudes the GA of the subjects in alphabetical order. You can find an example in ./data/GA.txt
+The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 31 GW. To train the model, the data splits for training/validation/testing are given in ./data/. A gestational age (GA) file is needed that includes the GA of the subjects in alphabetical order. You can find an example in ./data/GA.txt
 
 ## Evaluation
 
