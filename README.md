@@ -1,5 +1,5 @@
 # Fetal_SP_Segmentation
-![](figure/sp.png)
+![](figure/sp_example.png)
 
 ## Table of contents
 
