@@ -32,7 +32,7 @@ The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 3
 
 The mode latest weights are located in ./pretrained. To predict the subplate for an MRI reconstruction using the weights, please run
 ``` bash
-python SP_segmentation.py -input recon_to31_nuc.nii -output ./ -axi ../ckpts/pretrained/axi.h5 -cor ../ckpts/pretrained/cor.h5 -sag ../ckpts/pretrained/sag.h5;
+python SP_segmentation.py -input recon_to31_nuc.nii -output ./ -axi ../pretrained/axi.h5 -cor ../pretrained/cor.h5 -sag ../pretrained/sag.h5;
 ```
 Where -input is MRI reconstruction to segment, -output is the path where the segmentation will be saved . Please refer to config.py for detailed configurations.  
 
@@ -60,6 +60,6 @@ python3 ./results/avg_score2.py . ;
 ```
 
 ## Performance
-The model was evaluated using cross-validation. It had a training dice coefficient of 0.94 and a training loss of 0.51. The validation dice coefficient was 0.95 with a loss of 0.42
+The model was evaluated using cross-validation. The final training had a training dice coefficient of 0.94 and a training loss of 0.52. The validation dice coefficient was 0.94 with a loss of 0.52
 
-
+![](figure/plots.png)
