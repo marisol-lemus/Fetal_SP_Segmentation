@@ -30,7 +30,7 @@ The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 3
 
 ## Evaluation
 
-The model weights can be downlaoded from this [link](https://bit.ly/sp-segmentation-weights). To predict the subplate for an MRI reconstruction using the weights, please run
+The model weights can be downloaded from this [link](https://bit.ly/sp-segmentation-weights). To predict the subplate for an MRI reconstruction using the weights, please run
 
 ``` bash
 python SP_segmentation.py -input recon_to31_nuc.nii -output ./ -axi ../model/axi.h5 -cor ../model/cor.h5 -sag ../model/sag.h5;
