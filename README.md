@@ -55,8 +55,8 @@ To visualize the results run the following commands. The first code will show th
 
 ``` bash
 cd history/
-python3 /neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/code/plots.py . ;
-python3 /neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/code/avg_score2.py . ;
+python3 ./results/plots.py . ;
+python3 ./results/avg_score2.py . ;
 ```
 
 ## Performance
