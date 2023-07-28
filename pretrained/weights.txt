@@ -1,0 +1,2 @@
+You can download the latest training weights from the following link. Make sure to download them on the pretrained folder
+https://bit.ly/sp-segmentation-weights
