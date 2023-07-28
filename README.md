@@ -30,9 +30,10 @@ The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 3
 
 ## Evaluation
 
-The mode latest weights are located in ./pretrained. To predict the subplate for an MRI reconstruction using the weights, please run
+The model weights can be downlaoded from this [link](https://bit.ly/sp-segmentation-weights). To predict the subplate for an MRI reconstruction using the weights, please run
+
 ``` bash
-python SP_segmentation.py -input recon_to31_nuc.nii -output ./ -axi ../pretrained/axi.h5 -cor ../pretrained/cor.h5 -sag ../pretrained/sag.h5;
+python SP_segmentation.py -input recon_to31_nuc.nii -output ./ -axi ../model/axi.h5 -cor ../model/cor.h5 -sag ../model/sag.h5;
 ```
 Where -input is MRI reconstruction to segment, -output is the path where the segmentation will be saved . Please refer to config.py for detailed configurations.  
 
