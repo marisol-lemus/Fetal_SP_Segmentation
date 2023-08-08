@@ -4,6 +4,7 @@
 ## Table of contents
 
 * [Overview](#overview)
+* [Container](#container)
 * [Installation](#installation)
 * [Dataset](#dataset)
 * [Evaluation](#evaluation)
@@ -14,6 +15,38 @@
 ## Overview
 Deep learning U-Net to predict the subplate (SP), cortical plate (CP) and inner plate segmentation from fetal MRI scans. 
 
+## Container
+
+You can run the pipeline in a singularity file. This will work on any computer and is simple to set up.  
+
+You can build a singularity image with the following command. You can read more [here](https://docs.sylabs.io/guides/3.5/user-guide/definition_files.html). Make sure to download the [weights](https://bit.ly/sp-segmentation-weights) first!
+
+``` bash
+sudo singularity fetal_sp_seg.sif container.def;
+```
+
+Once you have your container, you need to make a directory to hold the images you want to analyze and the results and create a variable to identify the subject. For example:
+
+``` bash
+mkdir subj1;
+cp T2.nii.gz ./subj1;
+file=subj1;
+```
+The T2.nii.gz file is the reconstruction of your subjects. You can use any names for the images and the directory, but you'll have to modify sightly the next command. 
+
+``` bash
+singularity run --no-home -B ${file}/:/data ./fetal_sp_seg_noatt.sif T2.nii.gz ./output 0;
+``` 
+
+If you are part of the FNNDSC laboratory, the docker usage is like this:
+``` bash
+singularity run --no-home -B ${file}/:/data /neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/code/noatt_code/fetal_sp_seg_noatt.sif recon_to31_nuc.nii ./ 0
+``` 
+The results will be saved on the same $file path, and you'll use the gpu 0 of the machine. The variable file should be the identification of an MRI subject where the reconstruction (recon_to31_nuc.nii) is located.  Here is an example:
+
+``` bash
+file=1234567/2008.04.06-031Y-MR_Fetal_Body_Indications-12345/;
+```
 
 ## Installation
 
@@ -27,6 +60,11 @@ pip install -r requirements.txt
 ## Dataset
 
 The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 31 GW. To train the model, the data splits for training/validation/testing are given in ./data/. A gestational age (GA) file is needed that includes the GA of the subjects in alphabetical order. You can find an example in ./data/GA.txt
+
+If you are at the FNDDSC laboratory, you can access the data information here
+``` bash
+/neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/dataset/SP_data_information.csv
+``` 
 
 ## Evaluation
 
@@ -63,4 +101,5 @@ python3 ./results/avg_score2.py . ;
 ## Performance
 The model was evaluated using cross-validation. The final training had a training dice coefficient of 0.94 and a training loss of 0.52. The validation dice coefficient was 0.94 with a loss of 0.52
 
-![](figure/plots.png)
+![](figure/predictions.png)
+
