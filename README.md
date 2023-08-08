@@ -4,16 +4,27 @@
 ## Table of contents
 
 * [Overview](#overview)
+* [Dataset](#dataset)
 * [Container](#container)
 * [Installation](#installation)
-* [Dataset](#dataset)
-* [Evaluation](#evaluation)
 * [Training](#training)
+* [Evaluation](#evaluation)
 * [Performance](#performance)
+
 
 
 ## Overview
 Deep learning U-Net to predict the subplate (SP), cortical plate (CP) and inner plate segmentation from fetal MRI scans. 
+
+
+## Dataset
+
+The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 31 GW. To train the model, the data splits for training/validation/testing are given in ./data/. A gestational age (GA) file is needed that includes the GA of the subjects in alphabetical order. You can find an example in ./data/GA.txt
+
+If you are at the FNDDSC laboratory, you can access the data information here
+``` bash
+/neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/dataset/SP_data_information.csv
+```
 
 ## Container
 
@@ -57,24 +68,6 @@ source SP_env/bin/activate
 pip install -r requirements.txt
 ``` 
 
-## Dataset
-
-The model was trained with a dataset of 89 MRI's of subjects between 22 GW and 31 GW. To train the model, the data splits for training/validation/testing are given in ./data/. A gestational age (GA) file is needed that includes the GA of the subjects in alphabetical order. You can find an example in ./data/GA.txt
-
-If you are at the FNDDSC laboratory, you can access the data information here
-``` bash
-/neuro/labs/grantlab/research/MRI_processing/marisol.lemus/subplate_seg_deep_project/dataset/SP_data_information.csv
-``` 
-
-## Evaluation
-
-The model weights can be downloaded from this [link](https://bit.ly/sp-segmentation-weights). To predict the subplate for an MRI reconstruction using the weights, please run
-
-``` bash
-python code/SP_segmentation.py -input evaluation/subj1/recon_to31_nuc.nii -output evaluation/subj1/ -axi ../pretrained/axi.h5 -cor ../pretrained/cor.h5 -sag ../pretrained/sag.h5;
-```
-Where -input is MRI reconstruction to segment, -output is the path where the segmentation will be saved . Please refer to config.py for detailed configurations.  
-
 ## Training 
 
 The following instruction shows how to train the subplate model on a given dataset. 
@@ -98,8 +91,19 @@ python3 ./results/plots.py . ;
 python3 ./results/avg_score2.py . ;
 ```
 
+## Evaluation
+
+The model weights can be downloaded from this [link](https://bit.ly/sp-segmentation-weights). To predict the subplate for an MRI reconstruction using the weights, please run
+
+``` bash
+python code/SP_segmentation.py -input evaluation/subj1/recon_to31_nuc.nii -output evaluation/subj1/ -axi ../pretrained/axi.h5 -cor ../pretrained/cor.h5 -sag ../pretrained/sag.h5;
+```
+Where -input is MRI reconstruction to segment, -output is the path where the segmentation will be saved . Please refer to config.py for detailed configurations.  
+
+
 ## Performance
 The model was evaluated using cross-validation. The final training had a training dice coefficient of 0.94 and a training loss of 0.52. The validation dice coefficient was 0.94 with a loss of 0.52
 
 ![](figure/predictions.png)
+
 
